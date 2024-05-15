@@ -15,8 +15,8 @@ public class MyWorld extends World
      */
     public int score = 0;
     
-    Label Score;
-    Label GO;
+    Label label;
+    Label death;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -25,18 +25,24 @@ public class MyWorld extends World
         Elephant hero = new Elephant();
         addObject(hero,300,300);
         
-        Score = new Label(0,0);
-        addObject(Score,20,20);
-        
-        GO = new Label(0,0);
-        addObject(GO,0,0);
+        label = new Label(0,50);
+        addObject(label,20,20);
         
         newApple();
     }
     
     public void up() {
         score++;
-        Score.setValue(score);
+        label.setValue(score);
+    }
+    
+    public void over() {
+        death = new Label(0,50);
+        addObject(death,300,200);
+        death.setValue("Game Over!! >:(");
+        
+        label.setValue("Final Score: " + score);
+        label.setLocation(300,250);
     }
     
     /**
